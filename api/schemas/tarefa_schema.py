@@ -4,7 +4,7 @@ from api import ma
 from api.models.tarefa_model import TarefaModel
 
 
-class TarefaSchema(ma.SQLAlchemySchema):
+class TarefaSchema(ma.Schema):
     class Meta:
         model = TarefaModel
         fields = ('titulo', 'descricao', 'data_expiracao', 'projeto')

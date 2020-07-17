@@ -1,6 +1,6 @@
 DEBUG = True
 USERNAME = 'root'
-PASSWORD = '7P952wjy'
+PASSWORD = '7P952wjy*'
 SERVER = 'localhost'
 DB = 'flask_api'
 

@@ -4,7 +4,7 @@ from api import ma
 from api.models import projeto_model
 
 
-class ProjetoSchema(ma.SQLAlchemySchema):
+class ProjetoSchema(ma.Schema):
     class Meta:
         model = projeto_model.ProjetoModel
         fields = ("id", "nome", "descricao", "tarefas")

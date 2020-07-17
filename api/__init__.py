@@ -16,4 +16,3 @@ from . import entidades
 from . import schemas
 from . import services
 from . import views
-
