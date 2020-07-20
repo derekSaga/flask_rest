@@ -3,6 +3,8 @@ from flask_restful import Resource
 
 from api import api
 from api.entidades.tarefa import Tarefa
+from api.models.tarefa_model import TarefaModel
+from api.pagination import paginate
 from api.schemas import tarefa_schema
 from api.services import tarefa_service, projeto_service
 
@@ -11,10 +13,11 @@ class TarefaList(Resource):
     """metodos que não precisam de parametros GET e POST"""
 
     def get(self):
-        tarefas = tarefa_service.listar_tarefas()
+        # tarefas = tarefa_service.listar_tarefas()
         ts = tarefa_schema.TarefaSchema(many=True)
-        result = ts.jsonify(tarefas)
-        return make_response(result, 200)
+        # result = ts.jsonify(tarefas)
+        # return make_response(result, 200)
+        return paginate(TarefaModel, ts)
 
     def post(self):
         ts = tarefa_schema.TarefaSchema()

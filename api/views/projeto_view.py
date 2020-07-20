@@ -3,6 +3,8 @@ from flask_restful import Resource
 
 from api import api
 from api.entidades.projeto import Projeto
+from api.models.tarefa_model import TarefaModel
+from api.pagination import paginate
 from api.schemas import projeto_schema
 from api.services import projeto_service
 
@@ -11,10 +13,11 @@ class ProjetoList(Resource):
     """metodos que não precisam de parametros GET e POST"""
 
     def get(self):
-        projetos = projeto_service.listar_projetos()
+        # projetos = projeto_service.listar_projetos()
         ts = projeto_schema.ProjetoSchema(many=True)
-        result = ts.jsonify(projetos)
-        return make_response(result, 200)
+        # result = ts.jsonify(projetos)
+        # return make_response(result, 200)
+        return paginate(TarefaModel, ts)
 
     def post(self):
         ts = projeto_schema.ProjetoSchema()

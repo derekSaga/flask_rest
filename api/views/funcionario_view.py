@@ -3,6 +3,8 @@ from flask_restful import Resource
 
 from api import api
 from api.entidades import funcionario
+from api.models.funcionario_model import FuncionarioModel
+from api.pagination import paginate
 from api.schemas import funcionario_schema
 from api.services import funcionario_service
 
@@ -11,10 +13,11 @@ class FuncionarioList(Resource):
     """metodos get e post que não precisam de parametros"""
 
     def get(self):
-        funcionarios = funcionario_service.listar_funcionarios()
+        # funcionarios = funcionario_service.listar_funcionarios()
         fs = funcionario_schema.FuncionarioSchema(many=True)
-        result = fs.jsonify(funcionarios)
-        return make_response(result, 200)
+        # result = fs.jsonify(funcionarios)
+        # return make_response(result, 200)
+        return paginate(FuncionarioModel, fs)
 
     def post(self):
         fs = funcionario_schema.FuncionarioSchema()
