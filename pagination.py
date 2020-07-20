@@ -1,1 +1,2 @@
-def paginate
+def paginate(model, schema):
+    pass
