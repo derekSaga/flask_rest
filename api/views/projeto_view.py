@@ -1,4 +1,4 @@
-from flask import request, make_response, jsonify
+from flask import make_response, request, jsonify
 from flask_restful import Resource
 
 from api import api
@@ -24,7 +24,8 @@ class ProjetoList(Resource):
         else:
             nome = request.json['nome']
             descricao = request.json['descricao']
-            projeto_nova = Projeto(nome, descricao)
+            funcionarios = request.json['funcionarios']
+            projeto_nova = Projeto(nome, descricao, funcionarios)
             result = projeto_service.cadastrar_projeto(projeto_nova)
             return make_response(ts.jsonify(result), 201)
 
@@ -53,8 +54,9 @@ class ProjetoDetail(Resource):
         else:
             nome = request.json['nome']
             descricao = request.json['descricao']
+            funcionarios = request.json['funcionarios']
 
-            projeto_nova = Projeto(nome, descricao)
+            projeto_nova = Projeto(nome, descricao, funcionarios)
 
             projeto_service.editar_projeto(projeto_bd, projeto_nova)
 

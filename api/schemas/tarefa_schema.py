@@ -1,15 +1,15 @@
 from marshmallow import fields
 
 from api import ma
-from api.models.tarefa_model import TarefaModel
+from ..models import tarefa_model
 
 
-class TarefaSchema(ma.Schema):
+class TarefaSchema(ma.SQLAlchemySchema):
     class Meta:
-        model = TarefaModel
-        fields = ('titulo', 'descricao', 'data_expiracao', 'projeto')
+        model = tarefa_model.TarefaModel
+        fields = ("id", "titulo", "descricao", "data_expiracao", "projeto")
 
     titulo = fields.String(required=True)
     descricao = fields.String(required=True)
     data_expiracao = fields.Date(required=True)
-    projeto = fields.String(required=True)
+    projeto = ma.auto_field(required=True)

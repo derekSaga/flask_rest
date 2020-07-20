@@ -44,6 +44,20 @@ class FuncionarioDetail(Resource):
         funcionario_service.delete_funcionario(funcionario_bd)
         return make_response(jsonify(''), 204)
 
+    def put(self, id_funcionario):
+        funcionario_bd = funcionario_service.listar_funcionario_id(id_funcionario)
+        if funcionario_bd is None:
+            return make_response(jsonify('Funcionario não encontrado'), 404)
+        fs = funcionario_schema.FuncionarioSchema()
+        validate = fs.validate(request.json)
+        if validate:
+            return make_response(jsonify(validate), 400)
+        else:
+            funcionario_entidade = funcionario.Funcionario(request.json['nome'], request.json['dt_nascimento'])
+            funcionario_service.editar_funcionario(funcionario_bd, funcionario_entidade)
+            result = funcionario_service.listar_funcionario_id(id_funcionario)
+            return make_response(fs.jsonify(result), 200)
+
 
 api.add_resource(FuncionarioList, '/funcionarios')
 api.add_resource(FuncionarioDetail, '/funcionarios/<int:id_funcionario>')

@@ -10,6 +10,5 @@ class TarefaModel(db.Model):
     descricao = db.Column(db.String(100), nullable=False)
     data_expiracao = db.Column(db.DATE, nullable=False)
 
-    projeto_id = db.Column(db.Integer, db.ForeignKey('projeto.id'))
-
-    projeto = db.relationship(projeto_model.ProjetoModel, backref=db.backref('tarefas', lazy='dynamic'))
+    projeto_id = db.Column(db.Integer, db.ForeignKey("projeto.id"))
+    projeto = db.relationship(projeto_model.ProjetoModel, backref=db.backref("tarefas", lazy="dynamic"))
