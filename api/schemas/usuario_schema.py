@@ -5,7 +5,7 @@ from api.models import usuario_model
 
 
 class UsuarioSchema(ma.SQLAlchemySchema):
-    class:
+    class Meta:
         model = usuario_model.UsuarioModel
         fields = ('id', 'nome', 'senha', 'email')
 
