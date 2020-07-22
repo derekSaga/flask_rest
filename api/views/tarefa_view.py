@@ -1,4 +1,5 @@
 from flask import make_response, request, jsonify
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
 from api import api
@@ -12,6 +13,7 @@ from ..services import tarefa_service, projeto_service
 class TarefaList(Resource):
     """metodos que não precisam de parametros GET e POST"""
 
+    @jwt_required
     def get(self):
         # tarefas = tarefa_service.listar_tarefas()
         ts = tarefa_schema.TarefaSchema(many=True)
@@ -38,7 +40,7 @@ class TarefaList(Resource):
 
 
 class TarefaDetail(Resource):
-
+    @jwt_required
     def get(self, id_tarefa):
         tarefa = tarefa_service.listar_tarefa_id(id_tarefa)
         if tarefa is None:

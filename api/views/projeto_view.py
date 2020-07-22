@@ -1,9 +1,10 @@
 from flask import make_response, request, jsonify
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
 from api import api
+from api.models.projeto_model import ProjetoModel
 from ..entidades.projeto import Projeto
-from ..models.tarefa_model import TarefaModel
 from ..pagination import paginate
 from ..schemas import projeto_schema
 from ..services import projeto_service
@@ -11,13 +12,13 @@ from ..services import projeto_service
 
 class ProjetoList(Resource):
     """metodos que não precisam de parametros GET e POST"""
-
+    @jwt_required
     def get(self):
         # projetos = projeto_service.listar_projetos()
         ts = projeto_schema.ProjetoSchema(many=True)
         # result = ts.jsonify(projetos)
         # return make_response(result, 200)
-        return paginate(TarefaModel, ts)
+        return paginate(ProjetoModel, ts)
 
     def post(self):
         ts = projeto_schema.ProjetoSchema()

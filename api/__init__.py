@@ -13,5 +13,5 @@ migrate = Migrate(app, db)
 api = Api(app)
 JWTManager(app)
 
-from .views import tarefa_view, projeto_view, funcionario_view, usuario_view
+from .views import tarefa_view, projeto_view, funcionario_view, usuario_view, login_views
 from .models import tarefa_model, projeto_model, funcionario_model, usuario_model

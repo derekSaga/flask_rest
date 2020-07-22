@@ -1,4 +1,5 @@
 from flask import make_response, request, jsonify
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
 from api import api
@@ -12,6 +13,7 @@ from ..services import funcionario_service
 class FuncionarioList(Resource):
     """metodos get e post que não precisam de parametros"""
 
+    @jwt_required
     def get(self):
         # funcionarios = funcionario_service.listar_funcionarios()
         fs = funcionario_schema.FuncionarioSchema(many=True)
