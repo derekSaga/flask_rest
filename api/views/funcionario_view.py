@@ -2,11 +2,11 @@ from flask import make_response, request, jsonify
 from flask_restful import Resource
 
 from api import api
-from api.entidades import funcionario
-from api.models.funcionario_model import FuncionarioModel
-from api.pagination import paginate
-from api.schemas import funcionario_schema
-from api.services import funcionario_service
+from ..entidades import funcionario
+from ..models.funcionario_model import FuncionarioModel
+from ..pagination import paginate
+from ..schemas import funcionario_schema
+from ..services import funcionario_service
 
 
 class FuncionarioList(Resource):

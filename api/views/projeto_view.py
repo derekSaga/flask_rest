@@ -2,11 +2,11 @@ from flask import make_response, request, jsonify
 from flask_restful import Resource
 
 from api import api
-from api.entidades.projeto import Projeto
-from api.models.tarefa_model import TarefaModel
-from api.pagination import paginate
-from api.schemas import projeto_schema
-from api.services import projeto_service
+from ..entidades.projeto import Projeto
+from ..models.tarefa_model import TarefaModel
+from ..pagination import paginate
+from ..schemas import projeto_schema
+from ..services import projeto_service
 
 
 class ProjetoList(Resource):

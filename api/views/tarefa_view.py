@@ -2,11 +2,11 @@ from flask import make_response, request, jsonify
 from flask_restful import Resource
 
 from api import api
-from api.entidades.tarefa import Tarefa
-from api.models.tarefa_model import TarefaModel
-from api.pagination import paginate
-from api.schemas import tarefa_schema
-from api.services import tarefa_service, projeto_service
+from ..entidades.tarefa import Tarefa
+from ..models.tarefa_model import TarefaModel
+from ..pagination import paginate
+from ..schemas import tarefa_schema
+from ..services import tarefa_service, projeto_service
 
 
 class TarefaList(Resource):
