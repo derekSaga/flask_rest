@@ -1,3 +1,4 @@
+from flasgger import Swagger
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow
@@ -12,6 +13,7 @@ ma = Marshmallow(app)
 migrate = Migrate(app, db)
 api = Api(app)
 JWTManager(app)
+swagger = Swagger(app)
 
 from .views import tarefa_view, projeto_view, funcionario_view, usuario_view, login_views
 from .models import tarefa_model, projeto_model, funcionario_model, usuario_model

@@ -9,6 +9,42 @@ from ..services import usuario_service
 
 class UsuarioList(Resource):
     def post(self):
+        """
+        Esta rota é responsável por cadastrar usuários no sistema
+        ---
+        parameters:
+          - in: body
+            name: Usuario
+            description: Cadastrar Usuario
+            schema:
+              type: object
+              required:
+                - nome
+                - email
+                - senha
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+        responses:
+          201:
+            description: Usuario Cadastrado
+            schema:
+              id: Usuario
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+          400:
+            description: Usuario não cadastrado - Dados inválidos
+        """
+
         us = usuario_schema.UsuarioSchema()
         validate = us.validate(request.json)
         if validate:
